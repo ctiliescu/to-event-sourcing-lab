@@ -1,6 +1,5 @@
 package com.ctiliescu.toeventsourcinglab.account.service;
 
-import com.ctiliescu.toeventsourcinglab.account.model.AccountDb;
 import com.ctiliescu.toeventsourcinglab.account.model.AccountInfo;
 import com.ctiliescu.toeventsourcinglab.exceptions.NotFoundException;
 import com.ctiliescu.toeventsourcinglab.user.service.UserService;
@@ -22,8 +21,8 @@ public class AccountService {
 
 	public CompletableFuture<AccountInfo> createAccount(AccountInfo accountInfo,
 			String userId) {
-		return userService.getUser(userId).thenApply(
-				user -> accountRepository.insert(new AccountDb(userId, accountInfo)))
+		return userService.getUser(userId)
+				.thenCompose(user -> accountRepository.createAccount(userId, accountInfo))
 				.thenApply(a -> a);
 	}
 
