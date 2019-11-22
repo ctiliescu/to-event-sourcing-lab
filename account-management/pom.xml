@@ -10,21 +10,31 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>account-management</artifactId>
+    <properties>
+        <feign-core.version>10.2.3</feign-core.version>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.ctiliescu</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.github.openfeign</groupId>
+                    <artifactId>feign-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.ctiliescu</groupId>
-            <artifactId>user-management</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>${feign-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>${feign-core.version}</version>
         </dependency>
     </dependencies>
-
 
 </project>

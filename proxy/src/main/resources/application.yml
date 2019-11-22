@@ -1,0 +1,8 @@
+zuul:
+  routes:
+    users:
+      path: /api/v1/users/**
+      url: http://localhost:9010/api/v1/users
+    accounts:
+      path: /api/v1/accounts/**
+      url: http://localhost:9011/api/v1/accounts

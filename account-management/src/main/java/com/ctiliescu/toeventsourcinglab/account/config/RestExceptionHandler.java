@@ -1,6 +1,6 @@
-package com.ctiliescu.toeventsourcinglab.config;
+package com.ctiliescu.toeventsourcinglab.account.config;
 
-import com.ctiliescu.toeventsourcinglab.exceptions.NotFoundException;
+import com.ctiliescu.toeventsourcinglab.account.model.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

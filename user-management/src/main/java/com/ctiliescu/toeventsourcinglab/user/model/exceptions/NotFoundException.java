@@ -1,4 +1,4 @@
-package com.ctiliescu.toeventsourcinglab.exceptions;
+package com.ctiliescu.toeventsourcinglab.user.model.exceptions;
 
 public class NotFoundException extends RuntimeException {
 

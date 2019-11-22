@@ -1,8 +1,8 @@
 package com.ctiliescu.toeventsourcinglab.user.service;
 
-import com.ctiliescu.toeventsourcinglab.exceptions.NotFoundException;
 import com.ctiliescu.toeventsourcinglab.user.model.User;
 import com.ctiliescu.toeventsourcinglab.user.model.UserDb;
+import com.ctiliescu.toeventsourcinglab.user.model.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class UserService {
 	}
 
 	@Async
-	public CompletableFuture<User> getUser(String userId) {
+	public CompletableFuture<UserDb> getUser(String userId) {
 		return userRepository.getById(userId).thenApply(
 				userOp -> userOp.orElseThrow(() -> new NotFoundException("asdsad")));
 	}

@@ -2,14 +2,16 @@ package com.ctiliescu.toeventsourcinglab;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-@SpringBootApplication(scanBasePackages = { "com.ctiliescu.toeventsourcinglab" })
+@SpringBootApplication
 @EnableAsync
-public class ToEventSourcingLabApplication {
+@EnableFeignClients
+public class AccountManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ToEventSourcingLabApplication.class, args);
+		SpringApplication.run(AccountManagementApplication.class, args);
 	}
 
 }

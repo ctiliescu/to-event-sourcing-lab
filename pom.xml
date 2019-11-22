@@ -6,9 +6,8 @@
 	<modules>
 		<module>user-management</module>
 		<module>account-management</module>
-		<module>common</module>
-		<module>monolit-start</module>
-	</modules>
+        <module>proxy</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -24,7 +23,6 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-		<feign-core.version>10.2.3</feign-core.version>
 	</properties>
 
 	<dependencies>
@@ -57,12 +55,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-core</artifactId>
-			<version>${feign-core.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
@@ -81,6 +73,11 @@
 				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-zuul</artifactId>
+				<version>1.4.7.RELEASE</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
