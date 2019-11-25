@@ -2,9 +2,9 @@ package com.ctiliescu.toeventsourcinglab.user.service;
 
 import com.ctiliescu.toeventsourcinglab.user.model.User;
 import com.ctiliescu.toeventsourcinglab.user.model.UserDb;
-import com.ctiliescu.toeventsourcinglab.user.model.exceptions.NotFoundException;
+import com.ctiliescu.toeventsourcinglab.user.model.UserEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
@@ -15,14 +15,18 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	KafkaTemplate<String, UserEvent> template;
+
 	public CompletableFuture<User> insertUser(User user) {
-		return userRepository.insertUser(new UserDb(user));
+		return userRepository.insertUser(new UserDb(user)).thenCompose(this::sendUserLog);
 	}
 
-	@Async
-	public CompletableFuture<UserDb> getUser(String userId) {
-		return userRepository.getById(userId).thenApply(
-				userOp -> userOp.orElseThrow(() -> new NotFoundException("asdsad")));
+	private CompletableFuture<User> sendUserLog(UserDb userDb) {
+		return CompletableFuture
+				.completedFuture(template.send("user-log",
+						new UserEvent(userDb.getId(), "create")))
+				.thenApply(res -> userDb);
 	}
 
 }

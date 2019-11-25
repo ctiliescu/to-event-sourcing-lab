@@ -35,6 +35,11 @@
             <artifactId>feign-httpclient</artifactId>
             <version>${feign-core.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.2.7.RELEASE</version>
+        </dependency>
     </dependencies>
 
 </project>

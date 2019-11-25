@@ -2,6 +2,7 @@ package com.ctiliescu.toeventsourcinglab.account.service;
 
 import com.ctiliescu.toeventsourcinglab.account.model.AccountInfo;
 import com.ctiliescu.toeventsourcinglab.account.model.exceptions.NotFoundException;
+import com.ctiliescu.toeventsourcinglab.user.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,11 @@ public class AccountService {
 	private AccountRepository accountRepository;
 
 	@Autowired
-	private UserServiceApi userServiceApi;
+	private UserRepository userRepository;
 
 	public CompletableFuture<AccountInfo> createAccount(AccountInfo accountInfo,
 			String userId) {
-		return CompletableFuture.completedFuture(userServiceApi.getUser(userId))
+		return CompletableFuture.completedFuture(userRepository.getByUserId(userId))
 				.thenCompose(user -> accountRepository.createAccount(userId, accountInfo))
 				.thenApply(a -> a);
 	}

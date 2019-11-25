@@ -1,7 +1,6 @@
 package com.ctiliescu.toeventsourcinglab.user;
 
 import com.ctiliescu.toeventsourcinglab.user.model.User;
-import com.ctiliescu.toeventsourcinglab.user.model.UserDb;
 import com.ctiliescu.toeventsourcinglab.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +20,6 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	CompletableFuture<User> insertUser(@RequestBody User user) {
 		return userService.insertUser(user);
-	}
-
-	@GetMapping("/{userId}")
-	@ResponseStatus(HttpStatus.CREATED)
-	CompletableFuture<UserDb> getUser(@PathVariable String userId) {
-		return userService.getUser(userId);
 	}
 
 }
